@@ -2,6 +2,12 @@ name: Build conan package
 
 on:
   workflow_call:
+    inputs:
+      conan_index_ref:
+        description: The branch, tag or commit to checkout from kononovarseniy/conan-recipes-index
+        default: main
+        required: False
+        type: string
 
 jobs:
   build:
@@ -71,6 +77,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout conan-recipes-index
+        uses: actions/checkout@v4
+        with:
+          repository: kononovarseniy/conan-recipes-index
+          ref: ${{ inputs.conan_index_ref }}
+          path: conan-recipes-index
+
       - name: Install conan 2
         run: pip install "conan~=2.0"
 
@@ -83,6 +96,9 @@ jobs:
       - name: Set CONAN_HOME
         if: ${{ runner.os != 'Windows' }}
         run: echo CONAN_HOME=~/.conan2 >> "$GITHUB_ENV"
+
+      - name: Register conan-recipes-index
+        run: conan remote add --index 0 ka_recipes ./conan-recipes-index
 
       - name: Create conan profile
         run: |
