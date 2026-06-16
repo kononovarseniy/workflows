@@ -2,7 +2,7 @@
 
 Repository containing reusable GitHub workflows.
 
-Use semantic version tags (e.g., `@v1.2.0`) when referencing workflows.
+Use semantic version tags (e.g., `@v1.2.1`) when referencing workflows.
 
 ## Available Workflows
 
@@ -21,7 +21,7 @@ on:
 
 jobs:
   build:
-    uses: kononovarseniy/workflows/.github/workflows/conan-multi-platform.yml@v1.2.0
+    uses: kononovarseniy/workflows/.github/workflows/conan-multi-platform.yml@v1.2.1
     with:
       conan_index_ref: main
 ```
