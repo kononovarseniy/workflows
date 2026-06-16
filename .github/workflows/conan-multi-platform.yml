@@ -105,6 +105,9 @@ jobs:
           mkdir -p ${{ env.CONAN_HOME }}/profiles
           echo '${{ matrix.conf.conan-profile }}' > ${{ env.CONAN_HOME }}/profiles/default
 
+      - name: Show detected conan profile for debug
+        run: conan profile detect --name detected
+
       - name: Restore conan cache
         id: restore-conan-cache
         uses: actions/cache/restore@v4
