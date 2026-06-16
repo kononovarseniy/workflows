@@ -60,8 +60,8 @@ jobs:
               [conf]
               tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
 
-          - id: windows-msvc-2022
-            runner: windows-latest
+          - id: windows-2022
+            runner: windows-2022
             conan-profile: |
               [settings]
               arch=x86_64
@@ -69,6 +69,19 @@ jobs:
               compiler=msvc
               compiler.cppstd=20
               compiler.version=194
+              compiler.runtime=static
+              compiler.runtime_type=Release
+              build_type=Release
+
+          - id: windows-2025-vs2026
+            runner: windows-2025-vs2026
+            conan-profile: |
+              [settings]
+              arch=x86_64
+              os=Windows
+              compiler=msvc
+              compiler.cppstd=20
+              compiler.version=195
               compiler.runtime=static
               compiler.runtime_type=Release
               build_type=Release
