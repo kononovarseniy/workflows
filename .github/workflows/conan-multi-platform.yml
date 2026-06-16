@@ -88,10 +88,10 @@ jobs:
 
     runs-on: ${{ matrix.conf.runner }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Checkout conan-recipes-index
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: kononovarseniy/conan-recipes-index
           ref: ${{ inputs.conan_index_ref }}
@@ -123,7 +123,7 @@ jobs:
 
       - name: Restore conan cache
         id: restore-conan-cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: ${{ env.CONAN_HOME }}/p
           key: ${{ matrix.conf.id }}
@@ -133,7 +133,7 @@ jobs:
 
       - name: Save conan cache
         if: steps.restore-conan-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: ${{ env.CONAN_HOME }}/p
           key: ${{ matrix.conf.id }}
